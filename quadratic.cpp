@@ -86,7 +86,7 @@ void SolveQuadratic(double a, double b, double c){
 
     else if(b == 0 && c !=0){
 
-        printf("You need to solve %lf * x^2 + %lf\n", a, c); //axx+c=0    axx= -c  xx= -c/a
+        printf("You need to solve %lf.2 * x^2 + %lf.2\n", a, c); //axx+c=0    axx= -c  xx= -c/a
         printf("The equation has no roots\n");
 
     }
@@ -111,13 +111,13 @@ void SolveQuadratic(double a, double b, double c){
 
         else if(D > 0){
 
-            printf("You need to solve: %lf * x^2 + %lf * x + %lf = 0\n", a, b, c);
+            printf("You need to solve: %lf.2 * x^2 + %lf.2 * x + %lf.2 = 0\n", a, b, c);
             
             x1 = (-b + sqrt(D)) / (2 * a);
             
-            x1 = (-b - sqrt(D)) / (2 * a);
+            x2 = (-b - sqrt(D)) / (2 * a);
             
-            printf("The equation has 2 roots: x = %lf and x = %lf", x1, x2);
+            printf("The equation has 2 roots: x1 = %lf and x2 = %lf", x1, x2);
 
         }
 
