@@ -16,7 +16,7 @@ int main(){
 
     Input(&a, &b, &c);
     number_of_roots = SolveLinear (&a, &b, &c, &x);
-    SolveQuadratic (&a, &b, &c, &x1, &x2);
+    number_of_roots = SolveQuadratic (&a, &b, &c, &x1, &x2);
 
     switch (number_of_roots){
 
