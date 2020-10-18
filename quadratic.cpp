@@ -6,17 +6,17 @@
 
 int is_equal (double value, double number);
 void Input(double* a, double* b, double* c);
-int SolveLinear (double* a, double* b, double* c, double* x);
-int SolveQuadratic (double* a, double* b, double* c, double* x, double* x1, double* x2);
+int SolveLinear (double a, double b, double c, double* x);
+int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2);
 
 int main(){
 
     int number_of_roots = 0;
-    double* a = 0, b = 0, c = 0, x = 0, x1 = 0, x2 = 0;
+    double a = 0, b = 0, c = 0, x = 0, x1 = 0, x2 = 0;
 
     Input(&a, &b, &c);
-    number_of_roots = SolveLinear (&a, &b, &c, &x);
-    number_of_roots = SolveQuadratic (&a, &b, &c, &x1, &x2);
+    number_of_roots = SolveLinear    (a, b, c, &x);
+    number_of_roots = SolveQuadratic (a, b, c, &x, &x1, &x2);
 
     switch (number_of_roots){
 
@@ -27,12 +27,10 @@ int main(){
             printf ("The equation has no roots\n");
             break;
         case 1:
-            printf ("The equation has one root: x = %lf", *x);
+            printf ("The equation has one root: x = %lf", x);
             break;
         case 2:
-            printf ("The equation has 2 roots: x1 = %lf and x2 = %lf\n", *x1, *x2);
-            break;
-            
+            printf ("The equation has 2 roots: x1 = %lf and x2 = %lf\n", x1, x2);
     }
 
     return 0;
@@ -66,7 +64,7 @@ void Input(double* a, double* b, double* c){
 
 //--------------------------------------------------------------------------------
 
-int SolveLinear (double* a, double* b, double* c, double* x){
+int SolveLinear (double a, double b, double c, double* x){
 
     if (is_equal(a, ZERO) && is_equal(b, ZERO) && is_equal(c, ZERO)){
 
@@ -97,8 +95,6 @@ int SolveLinear (double* a, double* b, double* c, double* x){
 
     else if (!is_equal (a, ZERO)){
 
-        SolveQuadratic (a, b, c);
-
     }
 
     return 0;
@@ -106,7 +102,7 @@ int SolveLinear (double* a, double* b, double* c, double* x){
 
 //--------------------------------------------------------------------------------
 
-int SolveQuadratic (double* a, double* b, double* c, double* x, double* x1, double* x2){
+int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2){
 
     if (is_equal (b, ZERO) && is_equal (c, ZERO)){
 
@@ -176,7 +172,7 @@ int SolveQuadratic (double* a, double* b, double* c, double* x, double* x1, doub
         }
 
     }
-    
+
     return 0;
-    
+
 }
