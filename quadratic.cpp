@@ -31,6 +31,8 @@ int main(){
             break;
         case 2:
             printf ("The equation has 2 roots: x1 = %lf and x2 = %lf\n", *x1, *x2);
+            break;
+            
     }
 
     return 0;
