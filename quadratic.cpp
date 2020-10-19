@@ -23,7 +23,7 @@ int main(){
 
     number_of_roots = SolveLinear    (a, b, c, &x);
     number_of_roots = SolveQuadratic (a, b, c, &x, &x1, &x2);
-    printf("%d", number_of_roots);
+    
     Output(x, x1, x2, number_of_roots);
 
     return 0;
