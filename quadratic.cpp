@@ -23,7 +23,7 @@ int main(){
 
     number_of_roots = SolveLinear    (a, b, c, &x);
     number_of_roots = SolveQuadratic (a, b, c, &x, &x1, &x2);
-
+    printf("%d", number_of_roots);
     Output(x, x1, x2, number_of_roots);
 
     return 0;
@@ -112,10 +112,6 @@ int SolveLinear (double a, double b, double c, double* x){
 
     }
 
-    else if (!is_equal (a, ZERO)){
-
-    }
-
     return 0;
 }
 
@@ -123,22 +119,23 @@ int SolveLinear (double a, double b, double c, double* x){
 
 int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2){
 
-    if (is_equal (b, ZERO) && is_equal (c, ZERO)){
+    if (!is_equal (a, ZERO) && is_equal (b, ZERO) && is_equal (c, ZERO)){
 
         *x = 0;
         return 1;
 
     }
 
-    else if (!is_equal (b, ZERO) && is_equal (c, ZERO)){
+    else if (!is_equal (a, ZERO) && !is_equal (b, ZERO) && is_equal (c, ZERO)){
 
         printf ("You need to solve %lf * x^2 + %lf * x = 0\n", a, b);
         *x1 = 0;
         *x2 = -b / a;
+        return 2;
 
     }
 
-    else if(is_equal (b, ZERO) && !is_equal (c, ZERO)){
+    else if(!is_equal (a, ZERO) && is_equal (b, ZERO) && !is_equal (c, ZERO)){
 
         printf ("You need to solve %lf * x^2 + %lf = 0\n", a, c);
 
@@ -159,7 +156,7 @@ int SolveQuadratic (double a, double b, double c, double* x, double* x1, double*
 
     }
 
-    else if (!is_equal (b, ZERO) && !is_equal (c, ZERO)){
+    else if (!is_equal (a, ZERO) && !is_equal (b, ZERO) && !is_equal (c, ZERO)){
 
         double Discriminant = 0;
 
