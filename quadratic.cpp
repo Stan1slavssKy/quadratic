@@ -21,9 +21,8 @@ int main(){
 
     Input(&a, &b, &c);
 
-    number_of_roots = SolveLinear    (a, b, c, &x);
     number_of_roots = SolveQuadratic (a, b, c, &x, &x1, &x2);
-    
+
     Output(x, x1, x2, number_of_roots);
 
     return 0;
@@ -69,6 +68,7 @@ void Output(double x, double x1, double x2, int number_of_roots){
             printf ("The equation has no roots\n");
             break;
 
+
         case 1:
             printf ("The equation has one root: x = %lf", x);
             break;
@@ -77,13 +77,17 @@ void Output(double x, double x1, double x2, int number_of_roots){
             printf ("The equation has 2 roots: x1 = %lf and x2 = %lf\n", x1, x2);
             break;
 
+        default:
+            printf("Error");
+            break;
+
     }
 
 }
 
 //---------------------------------------------------------------------------------------
 
-int SolveLinear (double a, double b, double c, double* x){
+int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2){
 
     if (is_equal(a, ZERO) && is_equal(b, ZERO) && is_equal(c, ZERO)){
 
@@ -112,14 +116,7 @@ int SolveLinear (double a, double b, double c, double* x){
 
     }
 
-    return 0;
-}
-
-//---------------------------------------------------------------------------------------
-
-int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2){
-
-    if (!is_equal (a, ZERO) && is_equal (b, ZERO) && is_equal (c, ZERO)){
+    else if (!is_equal (a, ZERO) && is_equal (b, ZERO) && is_equal (c, ZERO)){
 
         *x = 0;
         return 1;
