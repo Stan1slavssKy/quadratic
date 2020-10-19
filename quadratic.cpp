@@ -13,6 +13,7 @@ int SolveQuadratic (double a, double b, double c, double* x, double* x1, double*
 
 int main(){
 
+
     int number_of_roots = 0;
 
     double a = 0, b = 0,   c = 0,
@@ -43,7 +44,7 @@ void Input(double* a, double* b, double* c){
     printf ("Welcome to the master of solving quadratic equations.\n"
             "Enter the values of the three coefficients: \n");
 
-    while (scanf("%lf%lf%lf", &a, &b, &c) != 3){
+    while (scanf("%lf%lf%lf", a, b, c) != 3){
 
         printf ("Incorrect data entered, please double-check and re-enter\n");
 
@@ -60,6 +61,7 @@ void Output(double x, double x1, double x2, int number_of_roots){
     switch (number_of_roots){
 
         case -2:
+
             printf ("The equation has an infinite number of roots\n");
             break;
 
@@ -77,7 +79,7 @@ void Output(double x, double x1, double x2, int number_of_roots){
             break;
 
         default:
-            printf("Error");
+            printf ("Error");
             break;
 
     }
@@ -88,7 +90,9 @@ void Output(double x, double x1, double x2, int number_of_roots){
 
 int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2){
 
-    if (is_equal(a, ZERO) && is_equal(b, ZERO) && is_equal(c, ZERO)){
+
+
+    if (is_equal (a, ZERO) && is_equal (b, ZERO) && is_equal (c, ZERO)){
 
         return -2;
 
@@ -107,7 +111,7 @@ int SolveQuadratic (double a, double b, double c, double* x, double* x1, double*
 
     }
 
-    else if (is_equal(a, ZERO) && !is_equal(b, ZERO) && !is_equal(c, ZERO)){
+    else if (is_equal (a, ZERO) && !is_equal (b, ZERO) && !is_equal (c, ZERO)){
 
         printf ("You need to solve %lf * x + %lf = 0\n", b, c);
         *x = -c / b;
@@ -131,14 +135,14 @@ int SolveQuadratic (double a, double b, double c, double* x, double* x1, double*
 
     }
 
-    else if(!is_equal (a, ZERO) && is_equal (b, ZERO) && !is_equal (c, ZERO)){
+    else if (!is_equal (a, ZERO) && is_equal (b, ZERO) && !is_equal (c, ZERO)){
 
         printf ("You need to solve %lf * x^2 + %lf = 0\n", a, c);
 
         if(c < 0){
 
-            *x1 =  fabs(sqrt(-c / a));
-            *x2 = -fabs(sqrt(-c / a));
+            *x1 =  fabs (sqrt(-c / a));
+            *x2 = -fabs (sqrt(-c / a));
 
             return 2;
 
