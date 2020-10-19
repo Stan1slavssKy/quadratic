@@ -6,38 +6,31 @@
 
 int is_equal (double value, double number);
 void Input(double* a, double* b, double* c);
+void Output(double x, double x1, double x2, int number_of_roots);
 int SolveLinear (double a, double b, double c, double* x);
 int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2);
+
+//---------------------------------------------------------------------------------------
 
 int main(){
 
     int number_of_roots = 0;
-    double a = 0, b = 0, c = 0, x = 0, x1 = 0, x2 = 0;
+
+    double a = 0, b = 0,   c = 0,
+           x = 0, x1 = 0, x2 = 0;
 
     Input(&a, &b, &c);
+
     number_of_roots = SolveLinear    (a, b, c, &x);
     number_of_roots = SolveQuadratic (a, b, c, &x, &x1, &x2);
 
-    switch (number_of_roots){
-
-        case -2:
-            printf ("The equation has an infinite number of roots\n");
-            break;
-        case -1:
-            printf ("The equation has no roots\n");
-            break;
-        case 1:
-            printf ("The equation has one root: x = %lf", x);
-            break;
-        case 2:
-            printf ("The equation has 2 roots: x1 = %lf and x2 = %lf\n", x1, x2);
-    }
+    Output(x, x1, x2, number_of_roots);
 
     return 0;
 
 }
 
-//-------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
 
 int is_equal (double value, double number){
 
@@ -45,11 +38,11 @@ int is_equal (double value, double number){
 
 }
 
-//-------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
 
 void Input(double* a, double* b, double* c){
 
-    printf ("Welcome to the master of solving quadratic equations\n"
+    printf ("Welcome to the master of solving quadratic equations.\n"
             "Enter the values of the three coefficients: \n");
 
     while (scanf("%lf%lf%lf", &a, &b, &c) != 3){
@@ -62,7 +55,33 @@ void Input(double* a, double* b, double* c){
 
 }
 
-//--------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
+
+void Output(double x, double x1, double x2, int number_of_roots){
+
+    switch (number_of_roots){
+
+        case -2:
+            printf ("The equation has an infinite number of roots\n");
+            break;
+
+        case -1:
+            printf ("The equation has no roots\n");
+            break;
+
+        case 1:
+            printf ("The equation has one root: x = %lf", x);
+            break;
+
+        case 2:
+            printf ("The equation has 2 roots: x1 = %lf and x2 = %lf\n", x1, x2);
+            break;
+
+    }
+
+}
+
+//---------------------------------------------------------------------------------------
 
 int SolveLinear (double a, double b, double c, double* x){
 
@@ -100,7 +119,7 @@ int SolveLinear (double a, double b, double c, double* x){
     return 0;
 }
 
-//--------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
 
 int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2){
 
@@ -113,7 +132,7 @@ int SolveQuadratic (double a, double b, double c, double* x, double* x1, double*
 
     else if (!is_equal (b, ZERO) && is_equal (c, ZERO)){
 
-        printf ("You need to solve %lf * x^2 + %lf * x = 0\n", a, b); //axx+bx=0  x(ax + b) = 0  x = 0  x = -b/a
+        printf ("You need to solve %lf * x^2 + %lf * x = 0\n", a, b);
         *x1 = 0;
         *x2 = -b / a;
 
@@ -121,7 +140,7 @@ int SolveQuadratic (double a, double b, double c, double* x, double* x1, double*
 
     else if(is_equal (b, ZERO) && !is_equal (c, ZERO)){
 
-        printf ("You need to solve %lf * x^2 + %lf = 0\n", a, c); //axx+c=0    axx= -c  xx= -c/a
+        printf ("You need to solve %lf * x^2 + %lf = 0\n", a, c);
 
         if(c < 0){
 
