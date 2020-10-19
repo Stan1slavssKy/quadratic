@@ -7,7 +7,6 @@
 int is_equal (double value, double number);
 void Input(double* a, double* b, double* c);
 void Output(double x, double x1, double x2, int number_of_roots);
-int SolveLinear (double a, double b, double c, double* x);
 int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2);
 
 //---------------------------------------------------------------------------------------
