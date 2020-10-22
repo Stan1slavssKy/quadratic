@@ -1,19 +1,47 @@
 #include <stdio.h>
 #include <math.h>
 
-#define INACCURACY 1E-6
+#define INACCURACY 1E-6 
 #define ZERO 0
 
-const int INF_ROOTS = -2;
+/* TODO
+1) юнит тесты, пример смотри ниже (как сделаешь по примеру ниже, расскажу, как сделать еще лучше)
+2) Документацию с доксигеном
+*/
+
+void unit_tests() { // у тебя есть несколько функций, ты хочешь проверить как работает каждая из них, таким образом сведя к минимуму возможности ошибок
+	printf("TESTING...");
+	// Например, тестим SolveQuadratic
+	float coeffs[] = {2, -1, -6};
+	float ans[] = {2, -1.5};
+
+	float* x1;
+	float* x2;
+	float* x;
+
+	SolveQuadratic(coeffs[0], coeffs[1], coeffs[2], x1, x2);
+	if (*x1 != ans[0] || *x2 != ans[1]) {
+		printf("TEST 1 FAILED"); 
+	}
+
+}
+
+const int INF_ROOTS = -2; // use enum for constants like theese
 const int NO_ROOTS  = -1;
 const int ONE_ROOT   = 1;
 const int TWO_ROOTS  = 2;
+
+enum {
+	INF_ROOTS = -2,
+	NO_ROOTS = -1,
+	...
+} errors
 
 int is_equal (double value, double number);
 void Input (double* a, double* b, double* c);
 void Output (double x, double x1, double x2, int number_of_roots);
 int SolveLinear (double b, double c, double* x);
-int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2);
+int SolveQuadratic (double a, double b, double c, double* x, double* x1, double* x2); // x лишний
 
 //---------------------------------------------------------------------------------------
 
@@ -159,9 +187,9 @@ int SolveQuadratic (double a, double b, double c, double* x, double* x1, double*
         printf ("You need to solve %lf * x^2 + %lf = 0\n", a, c);
 
         if(c < 0){
-
-            *x1 =  fabs (sqrt(-c / a));
-            *x2 = -fabs (sqrt(-c / a));
+        	float sqr = sqrt(-c / a);
+            *x1 =  fabs sqr; // count sqrt only once
+            *x2 = -fabs sqr;
 
             return TWO_ROOTS;
 
@@ -197,10 +225,10 @@ int SolveQuadratic (double a, double b, double c, double* x, double* x1, double*
         else if (Discriminant > ZERO){
 
             printf ("You need to solve: %lf * x^2 + %lf * x + %lf = 0\n", a, b, c);
+            float sqr_d = sqrt(Discriminant)
+            *x1 = (-b + sqr_d) / (2 * a); // same, count sqr only once
 
-            *x1 = (-b + sqrt(Discriminant)) / (2 * a);
-
-            *x2 = (-b - sqrt(Discriminant)) / (2 * a);
+            *x2 = (-b - sqr_d) / (2 * a);
 
             return TWO_ROOTS;
 
