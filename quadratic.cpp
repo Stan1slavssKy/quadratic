@@ -4,6 +4,8 @@
 #define INACCURACY 1E-6
 #define ZERO 0
 
+ /// ЛОХХХХХХХХ!
+
 enum {
 
      INF_ROOTS = -2,
